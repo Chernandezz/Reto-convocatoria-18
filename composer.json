@@ -1,0 +1,19 @@
+{
+  "name": "usuario/f18",
+  "description": "Creando Parqueadero",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Cristian Hernandez",
+      "email": "chernandezz@unal.edu.co"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Model\\": "./models",
+      "MVC\\": "./",
+      "Controllers\\": "./controllers"
+    }
+  }
+}
