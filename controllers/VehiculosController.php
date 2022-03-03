@@ -9,7 +9,7 @@ class VehiculosController
 {
     public static function ingresar(Router $router)
     {
-        $vehiculo = new Vehiculo();
+        $vehiculo = new Vehiculo;
 
         // Arreglo con mensajes de errores
         $errores = Vehiculo::getErrores();
@@ -17,8 +17,7 @@ class VehiculosController
         if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
             // Crea una nueva instacia
-
-            $vehiculo = new Vehiculo($_POST['vehiculo']);
+            $vehiculo = new Vehiculo($_POST);
 
             $errores = $vehiculo->validar();
 
@@ -37,6 +36,21 @@ class VehiculosController
         }
 
         $router->render('vehiculos/ingresar', [
+            'vehiculo' => $vehiculo,
+            'errores' => $errores,
+        ]);
+
+    }
+
+    public static function editar(Router $router)
+    {
+        $placa = validarORedireccionar('/');
+
+        // Arreglo con mensajes de errores
+        $errores = Vehiculo::getErrores();
+        $vehiculo = Vehiculo::find($placa);
+
+        $router->render('vehiculos/editar', [
             'vehiculo' => $vehiculo,
             'errores' => $errores,
         ]);

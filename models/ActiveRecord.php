@@ -21,13 +21,14 @@ class ActiveRecord
 
     public function guardar()
     {
-        if (!is_null($this->id)) {
+        if (!is_null($this->placa)) {
             // Actualizando un registro
-            $this->actualizar();
+            $this->crear();
+            // debuguear($this);
 
         } else {
             // Creando un nuevo registro
-            $this->crear();
+            $this->actualizar();
         }
     }
 
@@ -39,10 +40,9 @@ class ActiveRecord
         // Insertar en la base de datos
         $query = "INSERT INTO " . static::$tabla . " ( ";
         $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' ";
+        $query .= " ) VALUES ('";
         $query .= join("', '", array_values($atributos));
         $query .= " ');";
-
         $resultado = self::$db->query($query);
 
         if ($resultado) {
@@ -65,7 +65,7 @@ class ActiveRecord
 
         $query = "UPDATE " . static::$tabla . " SET ";
         $query .= join(', ', $valores);
-        $query .= " WHERE id = '" . self::$db->escape_String($this->id) . "' ";
+        $query .= " WHERE placa = '" . self::$db->escape_String($this->placa) . "' ";
         $query .= " LIMIT 1; ";
 
         $resultado = self::$db->query($query);
@@ -80,11 +80,10 @@ class ActiveRecord
     public function eliminar()
     {
         // Eliminar Registro
-        $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1 ";
+        $query = "DELETE FROM " . static::$tabla . " WHERE placa = " . self::$db->escape_string($this->placa) . " LIMIT 1 ";
         $resultado = self::$db->query($query);
         if ($resultado) {
-            $this->borrarImagen();
-            header("Location: /admin?accion=3");
+            header("Location: /?accion=3");
         }
 
     }
@@ -93,9 +92,6 @@ class ActiveRecord
     {
         $atributos = [];
         foreach (static::$columnasDB as $columna) {
-            if ($columna === 'id') {
-                continue;
-            }
 
             $atributos[$columna] = $this->$columna;
         }
@@ -112,32 +108,6 @@ class ActiveRecord
         }
 
         return $sanitizado;
-    }
-
-    // Subida de archivos
-    public function setImagen($imagen)
-    {
-
-        // Elimina la imagen previa
-        if (isset($this->id)) {
-            $this->borrarImagen();
-        }
-
-        // Asignar al atributo imagen el respectivo nombre
-        if ($imagen) {
-            $this->imagen = $imagen;
-        }
-    }
-
-    // Elimina la imagen
-    public function borrarImagen()
-    {
-        // Comprobar si existe el archivo
-        $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-        if ($existeArchivo) {
-            unlink(CARPETA_IMAGENES . $this->imagen);
-        }
-
     }
 
     // Validacion
@@ -161,10 +131,10 @@ class ActiveRecord
         return $resultado;
     }
 
-    // Busca una tupla por su id
-    public static function find($id)
+    // Busca una tupla por su placa
+    public static function find($placa)
     {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE id = ${id}";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE placa = '${placa}'";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }

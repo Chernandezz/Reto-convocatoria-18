@@ -20,23 +20,16 @@ class Vehiculo extends ActiveRecord
         $this->tiempoAcumulado = $args['tiempoAcumulado'] ?? null;
         $this->ingreso = $args['ingreso'] ?? null;
         $this->salida = $args['salida'] ?? null;
+
     }
 
-    // public function validar()
-    // {
-    //     if (!$this->titulo) {
-    //         self::$errores[] = 'El titulo es requerido';
-    //     }
+    public function validar()
+    {
+        if (!$this->placa) {
+            self::$errores[] = 'La Placa es Requerida';
+        }
 
-    //     if (!$this->precio) {
-    //         self::$errores[] = 'El precio es requerido';
-    //     }
+        return self::$errores;
+    }
 
-    //     // Validacion Imagen
-    //     if (!$this->imagen) {
-    //         self::$errores[] = 'La imagen es requerida';
-    //     }
-
-    //     return self::$errores;
-    // }
 }

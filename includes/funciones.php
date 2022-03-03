@@ -36,13 +36,12 @@ function s($html): string
 function validarORedireccionar(string $url)
 {
     // Recoger ID de la URL
-    $id = $_GET['id'];
-    $id = filter_var($id, FILTER_VALIDATE_INT);
+    $placa = $_GET['placa'];
 
     // Validamos que sea un id valido
-    if (!$id) {
+    if (!$placa) {
         header("Location: ${url}");
     }
 
-    return $id;
+    return $placa;
 }

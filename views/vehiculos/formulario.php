@@ -1,3 +1,6 @@
+<?php
+date_default_timezone_set('america/bogota');
+?>
 <fieldset>
         <div class="caja">
             <label for="placa">placa</label>
@@ -15,6 +18,6 @@
 
         <div class="caja">
             <label for="ingreso">ingreso</label>
-            <input type="datetime-local" name="ingreso" id="ingreso" value="<?php echo date('Y-d-m') . 'T' . date('H:i'); ?>" disabled>
+            <input type="datetime-local" name="ingreso" id="ingreso" value="<?php echo date('Y-d-m') . 'T' . date('H:i'); ?>">
         </div>
 </fieldset>

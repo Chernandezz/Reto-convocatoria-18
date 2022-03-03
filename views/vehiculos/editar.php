@@ -1,6 +1,6 @@
 <main class="contenedor">
     <section class="fondo">
-        <h2 class="encabezadoCRUD">Ingreso Vehiculo</h2>
+        <h2 class="encabezadoCRUD">Editar Información Vehiculo</h2>
         <?php foreach ($errores as $error): ?>
             <div class="alerta error">
                 <?php echo $error; ?>
@@ -10,7 +10,7 @@
             <?php include __DIR__ . '/formulario.php'?>
 
             <div class="lista-botones">
-                <input type="submit" value="Registrar ingreso" class="btn">
+                <input type="submit" value="Confirmar Modificación" class="btn">
                 <a class="btn" href="/index" >regresar</a>
             </div>
         </form>
