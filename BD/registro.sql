@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-03-2022 a las 06:01:08
+-- Tiempo de generación: 04-03-2022 a las 16:50:56
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
@@ -40,8 +40,13 @@ CREATE TABLE `registro` (
 --
 
 INSERT INTO `registro` (`placa`, `tipoCliente`, `tiempoAcumulado`, `ingreso`, `salida`) VALUES
-('SDP094', 'Oficial', 0, '11:26', ' '),
-('WRO32E', 'Invitado', 0, '10:27', ' ');
+('DFF676', 'Invitado', 0, '10:17', ' '),
+('DSF596', 'Oficial', 0, '22:52', ' '),
+('FGT54R', 'Invitado', 0, '10:17', ' '),
+('FOP094', 'Residente', 0, '10:49', ' '),
+('IOP345', 'Residente', 0, '10:33', ' '),
+('SDF43E', 'Residente', 0, '03:49', ' '),
+('YHU789', 'Oficial', 0, '10:28', ' ');
 
 --
 -- Índices para tablas volcadas
