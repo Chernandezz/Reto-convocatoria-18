@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use DateTime;
 use Model\Vehiculo;
 use MVC\Router;
 
@@ -64,6 +65,30 @@ class VehiculosController
         // Arreglo con mensajes de errores
         $errores = Vehiculo::getErrores();
         $vehiculo = Vehiculo::find($placa);
+
+        if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+            $vehiculo->salida();
+
+            if ($_POST['tipoCliente'] === 'Invitado') {
+                $ingreso = new DateTime($vehiculo->ingreso);
+                $salida = new DateTime($vehiculo->salida);
+                $tiempo = $ingreso->diff($salida);
+                // debuguear($tiempo);
+                $minutos = $tiempo->h * 60;
+                $minutos = $minutos + $tiempo->i;
+                $total = $minutos * 200;
+                header("Location: /?accion=6&t=${total}");
+
+            }
+            if ($_POST['tipoCliente'] === 'Residente') {
+                header("Location: /?accion=1");
+
+            }
+            if ($_POST['tipoCliente'] === 'Oficial') {
+                header("Location: /?accion=2");
+            }
+
+        }
 
         $router->render('vehiculos/salida', [
             'vehiculo' => $vehiculo,

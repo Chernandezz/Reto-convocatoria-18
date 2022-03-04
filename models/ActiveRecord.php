@@ -76,15 +76,13 @@ class ActiveRecord
         }
     }
 
-    // Eliminar un registro
-    public function eliminar()
+    // salida un vehiculo
+    public function salida()
     {
         // Eliminar Registro
-        $query = "DELETE FROM " . static::$tabla . " WHERE placa = " . self::$db->escape_string($this->placa) . " LIMIT 1 ";
+        $query = "DELETE FROM " . static::$tabla . " WHERE placa = '" . self::$db->escape_string($this->placa) . "' LIMIT 1 ";
         $resultado = self::$db->query($query);
-        if ($resultado) {
-            header("Location: /?accion=3");
-        }
+        return $resultado;
 
     }
 

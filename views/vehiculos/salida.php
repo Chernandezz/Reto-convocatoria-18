@@ -1,10 +1,6 @@
 <?php
 date_default_timezone_set('america/bogota');
 
-$datetime1 = new DateTime($vehiculo->ingreso);
-$datetime2 = new DateTime('15:10');
-$interval = $datetime2->diff($datetime1);
-
 ?>
 <main class="contenedor">
     <section class="fondo">
@@ -24,9 +20,7 @@ $interval = $datetime2->diff($datetime1);
                 <div class="caja">
                     <label for="tipoCliente">Cliente</label>
                     <select name="tipoCliente" id="tipoCliente">
-                        <option value="Invitado" selected>Invitado</option>
-                        <option value="Oficial">Oficial</option>
-                        <option value="Residente">Residente</option>
+                        <option value="<?php echo $vehiculo->tipoCliente ?>" selected><?php echo $vehiculo->tipoCliente ?></option>
                     </select>
                 </div>
 
