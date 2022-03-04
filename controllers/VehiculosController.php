@@ -25,11 +25,6 @@ class VehiculosController
             //  Revisar que el arreglo de errores este vacio
             if (empty($errores)) {
 
-                // Crear carpeta para subir imagenes
-                if (!is_dir(CARPETA_IMAGENES)) {
-                    mkdir(CARPETA_IMAGENES);
-                }
-
                 $vehiculo->guardar();
 
             }
@@ -77,15 +72,15 @@ class VehiculosController
                 $minutos = $tiempo->h * 60;
                 $minutos = $minutos + $tiempo->i;
                 $total = $minutos * 200;
-                header("Location: /?accion=6&t=${total}");
+                header("Location: /?accion=4&t=${total}");
 
             }
             if ($_POST['tipoCliente'] === 'Residente') {
-                header("Location: /?accion=1");
+                header("Location: /?accion=2");
 
             }
             if ($_POST['tipoCliente'] === 'Oficial') {
-                header("Location: /?accion=2");
+                header("Location: /?accion=3");
             }
 
         }
@@ -94,6 +89,5 @@ class VehiculosController
             'vehiculo' => $vehiculo,
             'errores' => $errores,
         ]);
-
     }
 }

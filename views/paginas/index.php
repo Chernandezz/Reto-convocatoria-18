@@ -1,4 +1,17 @@
 <section class="fondo">
+    <?php if (intval($accion) === 1): ?>
+            <div class="alerta exito">
+                <?php echo 'Vehiculo Ingresado correctamente'; ?>
+            </div>
+        <?php elseif (intval($accion) === 2): ?>
+            <div class="alerta exito">
+                <?php echo 'Tiempo Residente Almacenado correctamente'; ?>
+            </div>
+        <?php elseif (intval($accion) === 4): ?>
+            <div class="alerta exito">
+                <?php echo 'Total a pagar:' . $total; ?>
+            </div>
+        <?php endif;?>
   <table class="tabla-productos">
       <thead>
           <tr>
@@ -18,7 +31,6 @@
 
 	              <td class="acciones-crud">
 	                  <a href="/salida?placa=<?php echo $vehiculo->placa; ?>" class="botonaccion salida">salida</a>
-	                  <a href="/editar?placa=<?php echo $vehiculo->placa; ?>" class="botonaccion">Editar</a>
 	              </td>
 	          </tr>
 	          <?php endforeach;?>

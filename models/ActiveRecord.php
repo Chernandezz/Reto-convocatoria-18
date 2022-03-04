@@ -26,9 +26,6 @@ class ActiveRecord
             $this->crear();
             // debuguear($this);
 
-        } else {
-            // Creando un nuevo registro
-            $this->actualizar();
         }
     }
 
@@ -50,30 +47,6 @@ class ActiveRecord
             header("Location: /?accion=1");
         }
 
-    }
-
-    // Actualizar Registro
-    public function actualizar()
-    {
-        // Sanitizar los datos
-        $atributos = $this->sanitizarAtributos();
-
-        $valores = [];
-        foreach ($atributos as $key => $value) {
-            $valores[] = "{$key} = '{$value}'";
-        }
-
-        $query = "UPDATE " . static::$tabla . " SET ";
-        $query .= join(', ', $valores);
-        $query .= " WHERE placa = '" . self::$db->escape_String($this->placa) . "' ";
-        $query .= " LIMIT 1; ";
-
-        $resultado = self::$db->query($query);
-
-        if ($resultado) {
-            // Redireccionar al Usuario
-            header("Location: /admin?accion=2");
-        }
     }
 
     // salida un vehiculo
@@ -165,16 +138,6 @@ class ActiveRecord
         }
 
         return $objeto;
-    }
-
-    // Sincroniza el objeto en memoria con los cambios realizador por el usuario
-    public function sincronizar($args = [])
-    {
-        foreach ($args as $key => $value) {
-            if (property_exists($this, $key) && !is_null($value)) {
-                $this->$key = $value;
-            }
-        }
     }
 
 }

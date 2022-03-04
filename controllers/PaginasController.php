@@ -12,8 +12,13 @@ class PaginasController
     {
         $vehiculos = Vehiculo::all();
 
+        $accion = $_GET['accion'] ?? null;
+        $total = $_GET['t'] ?? null;
+
         $router->render('paginas/index', [
             'vehiculos' => $vehiculos,
+            'accion' => $accion,
+            'total' => $total,
         ]);
 
     }
