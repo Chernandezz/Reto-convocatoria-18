@@ -8,10 +8,10 @@
         <?php endforeach;?>
         <form class="formulario" method="POST">
             <?php include __DIR__ . '/formulario.php'?>
-
+            </fieldset>
             <div class="lista-botones">
                 <input type="submit" value="Confirmar Modificación" class="btn">
-                <a class="btn" href="/index" >regresar</a>
+                <a class="btn" href="/" >regresar</a>
             </div>
         </form>
 

@@ -26,7 +26,10 @@ class Vehiculo extends ActiveRecord
     public function validar()
     {
         if (!$this->placa) {
-            self::$errores[] = 'La Placa es Requerida';
+            self::$errores[] = 'La Placa Es Requerida';
+        }
+        if (strlen($this->placa) != 6) {
+            self::$errores[] = 'La Placa Debe Tener 6 Caracteres';
         }
 
         return self::$errores;
