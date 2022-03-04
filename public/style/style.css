@@ -241,9 +241,6 @@ table.tabla-productos .acciones-crud a {
 .header .iconos.oculto {
   pointer-events: none;
 }
-.header #btn-menu {
-  display: none;
-}
 
 .buscador {
   position: fixed;
@@ -427,7 +424,7 @@ section {
   }
 
   .swiper-button-next::after,
-  .swiper-button-prev::after {
+.swiper-button-prev::after {
     display: none;
   }
 }
